@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Build Docker image
-      run: docker build -t ${{ env.IMAGE_NAME }} .
+      - name: Build Docker image
+        run: docker build -t ${{ env.IMAGE_NAME }} .
 
-     - name: Log in to Huawei Cloud SWR
+      - name: Log in to Huawei Cloud SWR
         uses: huaweicloud/swr-login@v2.1.0
         with:
           access-key-id: ${{ secrets.ACCESSKEY }}
@@ -35,14 +35,13 @@ jobs:
           docker push $SWR_REGISTRY/$SWR_ORGANIZATION/$IMAGE_NAME:$IMAGE_TAG
           echo "::set-output name=image::$SWR_REGISTRY/$SWR_ORGANIZATION/$IMAGE_NAME:$IMAGE_TAG"
 
-    - name: Configure kubectl
-      uses: azure/k8s-set-context@v1
-      with:
-        kubeconfig: ${{ secrets.KUBE_CONFIG_DATA }}
+      - name: Configure kubectl
+        uses: azure/k8s-set-context@v1
+        with:
+          kubeconfig: ${{ secrets.KUBE_CONFIG_DATA }}
 
-    - name: Deploy to Huawei CCE
-      run: |
-        kubectl set image deployment/my-app-deployment my-app=${{ secrets.HUAWEI_SWR_REGISTRY }}/hello-world-nodejs:latest
-
+      - name: Deploy to Huawei CCE
+        run: |
+          kubectl set image deployment/my-app-deployment my-app=${{ secrets.HUAWEI_SWR_REGISTRY }}/hello-world-nodejs:latest
+          
     # Add more steps for deployment validation or other actions as needed
-
