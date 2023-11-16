@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install Node.js dependencies
-RUN npm installa
+RUN npm install
 
 # Copy the application source code to the container
 COPY . .
