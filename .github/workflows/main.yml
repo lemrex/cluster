@@ -16,12 +16,12 @@ jobs:
       - name: Build Docker image
         run: docker buildx build -t hello .
 
-      - name: Log in to Huawei Cloud SWR
-        uses: huaweicloud/swr-login@v2
-        with:
-          access-key-id: ${{ secrets.ACCESSKEY }}
-          access-key-secret: ${{ secrets.SECRETACCESSKEY }}
-          region: ${{ env.REGION_ID }}
+      #- name: Log in to Huawei Cloud SWR
+      #  uses: huaweicloud/swr-login@v2.1.0
+      #  with:
+      #    access-key-id: ${{ secrets.ACCESSKEY }}
+      #    access-key-secret: ${{ secrets.SECRETACCESSKEY }}
+      #    region: ${{ env.REGION_ID }}
 
       - name: Build, Tag, and Push Image to Huawei Cloud SWR
         id: push-image
@@ -31,6 +31,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
           IMAGE_NAME: ${{ env.IMAGE_NAME }}
         run: |
+          docker login -u af-south-1@304IO3JLLQP502QS8QVC -p fffabef4c79ed28cc69b074f6a0c7164341860e5f22cc3a651d883696e901238 swr.af-south-1.myhuaweicloud.com
           docker build -t $SWR_REGISTRY/$SWR_ORGANIZATION/$IMAGE_NAME:$IMAGE_TAG .
           docker push $SWR_REGISTRY/$SWR_ORGANIZATION/$IMAGE_NAME:$IMAGE_TAG
           echo "::set-output name=image::$SWR_REGISTRY/$SWR_ORGANIZATION/$IMAGE_NAME:$IMAGE_TAG"
