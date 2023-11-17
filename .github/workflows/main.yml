@@ -40,6 +40,8 @@ jobs:
         uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
+        run: |
+          kubectl config use-context external  
         with:
           args: get pods
           
