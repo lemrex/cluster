@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: hello-world-nodejs
-          image: swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:latest
+          image: swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:{tag}
           ports:
             - containerPort: 3000
