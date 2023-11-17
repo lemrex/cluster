@@ -54,7 +54,7 @@ jobs:
 
       - name: Debugging
         run: |
-          kubectl config current-context
+          #kubectl config use-context
           kubectl cluster-info
           kubectl get nodes
 
