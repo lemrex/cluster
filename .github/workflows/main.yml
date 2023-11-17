@@ -51,6 +51,8 @@ jobs:
 
       - name: Debugging
         run: |
+          kubectl config view
+          kubectl config get-contexts
           kubectl cluster-info dump
           kubectl cluster-info
           kubectl get nodes
