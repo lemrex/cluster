@@ -37,12 +37,20 @@ jobs:
           kubectl config current-context --kubeconfig=kubeconfig.yaml
 
   deploy:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     needs: build
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Configure kubectl for Huawei CCE
+        run: |
+          echo "${{ secrets.KUBE_CONFIG_DATA }}" > /home/kubeconfig.yaml
+          cd /home
+          mkdir -p $HOME/.kube
+          mv -f kubeconfig.yaml $HOME/.kube/config
+          #kubectl config use-context external
 
       - name: Debugging
         run: |
