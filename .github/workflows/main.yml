@@ -51,6 +51,7 @@ jobs:
           sudo mkdir -p .kube
           echo "${{ secrets.KUBE_CONFIG_DATA }}" > /home/.kube/config
           ls -l /home/.kube
+          sudo cat /home/.kube/config
           
           #echo "${{ secrets.KUBE_CONFIG_DATA }}" > $HOME/.kube/config
 
