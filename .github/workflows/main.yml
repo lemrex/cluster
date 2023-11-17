@@ -44,7 +44,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Configure kubectl for Huawei cloud CCE
+      - name: Configure kubectl for Huawei Cloud CCE
         run: |
           sudo mkdir -p $HOME/.kube
           sudo chown -R runner:runner $HOME/.kube
