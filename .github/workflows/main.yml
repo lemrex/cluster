@@ -48,7 +48,7 @@ jobs:
         run: |
           cd /home
           pwd
-          mkdir -p .kube
+          sudo mkdir -p .kube
           echo "${{ secrets.KUBE_CONFIG_DATA }}" > /home/.kube/config
           ll /home/.kube
           
