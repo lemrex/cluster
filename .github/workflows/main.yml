@@ -37,7 +37,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Configure kubectl for Huawei Cloud CCE
-        uses: actions-hub/kubectl@1.14.3
+        uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
@@ -47,6 +47,7 @@ jobs:
 
       - name: Debugging
         run: |
+          kubectl logs
           kubectl cluster-info
           kubectl get nodes
 
