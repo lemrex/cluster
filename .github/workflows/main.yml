@@ -55,7 +55,7 @@ jobs:
           
           #echo "${{ secrets.KUBE_CONFIG_DATA }}" > $HOME/.kube/config
 
-          #sudo echo "${{ secrets.KUBE_CONFIG_DATA }}" > ~/.kube/config
+          #sudo echo "${{ secrets.KUBE_CONFIG_DATA }}" > ~/.kube/confi
           #echo "${{ secrets.KUBE_CONFIG_DATA }}" > $HOME/.kube/confi
 
 
