@@ -46,11 +46,9 @@ jobs:
 
       - name: Configure kubectl for Huawei CCE
         run: |
-          echo "${{ secrets.KUBE_CONFIG_DATA }}" > /home/kubeconfig.yaml
-          cd /home
-          mkdir -p $HOME/.kube
-          mv -f kubeconfig.yaml $HOME/.kube/config
-          #kubectl config use-context external
+          #echo "${{ secrets.KUBE_CONFIG_DATA }}" > /home/kubeconfig.yaml
+          echo "$KUBE_CONFIG_DATA" | base64 -d > ~/.kube/config
+
 
       - name: Debugging
         run: |
