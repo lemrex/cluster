@@ -51,7 +51,7 @@ jobs:
 
       - name: Debugging
         run: |
-          kubectl cluster-info dump
+          #kubectl cluster-info dump
           kubectl cluster-info
           kubectl get nodes
 
