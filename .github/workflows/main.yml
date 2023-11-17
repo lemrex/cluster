@@ -45,18 +45,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Configure kubectl for Huawei CCE
-        run: |
-          cd /home
-          pwd
-          sudo mkdir -p .kube
-          echo "${{ secrets.KUBE_CONFIG_DATA }}" > /home/.kube/config
-          ls -l /home/.kube
-          sudo cat /home/.kube/config
-          
-          #echo "${{ secrets.KUBE_CONFIG_DATA }}" > $HOME/.kube/config
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
 
-          #sudo echo "${{ secrets.KUBE_CONFIG_DATA }}" > ~/.kube/confi
-          #echo "${{ secrets.KUBE_CONFIG_DATA }}" > $HOME/.kube/confi
+          
 
 
       - name: Debugging
