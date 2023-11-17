@@ -50,7 +50,7 @@ jobs:
           pwd
           sudo mkdir -p .kube
           echo "${{ secrets.KUBE_CONFIG_DATA }}" > /home/.kube/config
-          ll /home/.kube
+          ls -l /home/.kube
           
           #echo "${{ secrets.KUBE_CONFIG_DATA }}" > $HOME/.kube/config
 
