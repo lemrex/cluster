@@ -46,13 +46,10 @@ jobs:
 
       - name: Configure kubectl for Huawei CCE
         run: |
-          sudo apt-get update
-          sudo apt-get install -y apt-transport-https gnupg
-          curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-          echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-          sudo apt-get update
-          sudo apt-get install -y kubectl
           pwd
+          cd /home
+          echo "${{ secrets.KUBE_CONFIG_DATA }}" > /home/.kube/config
+          ll /home/.kube
           #mkdir -p $HOME/.kube
           #echo "${{ secrets.KUBE_CONFIG_DATA }}" > $HOME/.kube/config
 
