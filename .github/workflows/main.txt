@@ -1,0 +1,48 @@
+name: CI/CD to Huawei SWR and CCE
+
+on:
+  push:
+    branches:
+      - master  # Trigger CI/CD when code is pushed to the 'main' branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker buildx build -t hello .
+
+      #- name: Log in to Huawei Cloud SWR
+      #  uses: huaweicloud/swr-login@v2.1.0
+      #  with:
+      #    access-key-id: ${{ secrets.ACCESSKEY }}
+      #    access-key-secret: ${{ secrets.SECRETACCESSKEY }}
+      #    region: ${{ env.REGION_ID }}
+
+      - name: Build, Tag, and Push Image to Huawei Cloud SWR
+        id: push-image
+        env:
+          SWR_REGISTRY: swr.${{ env.REGION_ID }}.myhuaweicloud.com
+          SWR_ORGANIZATION: ${{ env.SWR_ORGANIZATION }}
+          IMAGE_TAG: ${{ github.sha }}
+          IMAGE_NAME: ${{ env.IMAGE_NAME }}
+        run: |
+          docker login -u af-south-1@304IO3JLLQP502QS8QVC -p fffabef4c79ed28cc69b074f6a0c7164341860e5f22cc3a651d883696e901238 swr.af-south-1.myhuaweicloud.com
+          docker build -t $SWR_REGISTRY/$SWR_ORGANIZATION/$IMAGE_NAME:v1 .
+          docker push $SWR_REGISTRY/$SWR_ORGANIZATION/$IMAGE_NAME:v1
+          echo "::set-output name=image::$SWR_REGISTRY/$SWR_ORGANIZATION/$IMAGE_NAME:v1"
+
+      - name: Configure kubectl
+        uses: azure/k8s-set-context@v1
+        with:
+          kubeconfig: ${{ secrets.KUBE_CONFIG_DATA }}
+
+      - name: Deploy to Huawei CCE
+        run: |
+          kubectl set image deployment/my-app-deployment my-app=${{ secrets.HUAWEI_SWR_REGISTRY }}/hello-world-nodejs:latest
+          
+    # Add more steps for deployment validation or other actions as needed
