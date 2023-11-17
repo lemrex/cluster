@@ -37,7 +37,7 @@ jobs:
           kubectl config current-context --kubeconfig=kubeconfig.yaml
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ecs-ralf
     needs: build
 
     steps:
