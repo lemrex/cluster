@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: hello-world-nodejs
-          image: YOUR_ECR_REPO_URL:latest
+          image: swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:991eb61244c7b8e5db74f760676094d1fea000b2:latest
           ports:
             - containerPort: 3000

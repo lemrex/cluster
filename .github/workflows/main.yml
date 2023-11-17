@@ -51,5 +51,4 @@ jobs:
 
       - name: Deploy to Huawei CCE
         run: |
-          kubectl create deployment my-app-deployment --image=${{ secrets.HUAWEI_SWR_REGISTRY }}/hello-world-nodejs:latest --dry-run=client -o yaml | kubectl apply -f -
-          kubectl set image deployment/my-app-deployment my-app=${{ secrets.HUAWEI_SWR_REGISTRY }}/hello-world-nodejs:latest
+          kubectl apply -f my-app-deployment.yaml
