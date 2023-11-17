@@ -46,8 +46,8 @@ jobs:
 
       - name: Configure kubectl for Huawei CCE
         run: |
-          sudo echo "${{ secrets.KUBE_CONFIG_DATA }}" > ~/.kube/config
-          #echo "$KUBE_CONFIG_DATA" | base64 -d > ~/.kube/config
+          #sudo echo "${{ secrets.KUBE_CONFIG_DATA }}" > ~/.kube/config
+          echo "${{ KUBE_CONFIG_DATA }}" | base64 -d > ~/home/runner/.kube/config
 
 
       - name: Debugging
