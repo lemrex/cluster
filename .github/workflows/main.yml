@@ -46,8 +46,8 @@ jobs:
 
       - name: Configure kubectl for Huawei cloud CCE
         run: |
-          sudo chown -R runner:runner $HOME/.kube
           sudo mkdir -p $HOME/.kube
+          sudo chown -R runner:runner $HOME/.kube
           export KUBECONFIG=$HOME/.kube/config
           echo "${{ secrets.KUBE_CONFIG_DATA }}" > $KUBECONFIG
 
