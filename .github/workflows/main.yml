@@ -44,7 +44,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Configure kubectl for Huawei CCE
+      - name: Configure kubectl for Huawei Cloud CCE
         uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
