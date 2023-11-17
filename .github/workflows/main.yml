@@ -52,7 +52,7 @@ jobs:
           echo "${{ secrets.KUBE_CONFIG_DATA }}" > /home/.kube/config
           ls -l /home/.kube
           #sudo cat /home/.kube/config
-          kubectl config use-context external
+          #kubectl config use-context external
           #echo "${{ secrets.KUBE_CONFIG_DATA }}" > $HOME/.kube/config
 
           #sudo echo "${{ secrets.KUBE_CONFIG_DATA }}" > ~/.kube/confi
