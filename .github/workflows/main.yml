@@ -52,4 +52,4 @@ jobs:
 
       - name: Deploy to Huawei CCE
         run: |
-          kubectl apply -f my-app-deployment.yaml
+          kubectl apply -f deployment.yaml
