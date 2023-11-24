@@ -41,11 +41,11 @@ jobs:
           ak: ${{ secrets.ACCESSKEY }}
           sk: ${{ secrets.SECRETACCESSKEY }}
           region: "af-south-1"
-          project_id: "eecc7ec81ad346adbcde0a07fa343cb0"
-          cluster_id: "974f91d7-8457-11ee-b946-0255ac100753"
+          project_id: ${{ env.PROJECT_ID }}
+          cluster_id: ${{ env.CLUSTER_ID }}
           
       - name: get CCE Cluster info
-      - run: |
+        run: |
           kubectl version --client --short
           kubectl config view
           kubectl cluster-info
