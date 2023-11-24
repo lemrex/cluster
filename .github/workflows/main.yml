@@ -41,9 +41,9 @@ jobs:
         with:
            ak: ${{ secrets.ACCESSKEY }}
            sk: ${{ secrets.SECRETACCESSKEY }}
-           region: "cn-north-4"
-           project_id: "xxxxxxxxxxxxxxxxxxxxxxx"
-           cluster_id: "xxxxxxxxxxxxxxxxxxxxxxx"
+           region: "af-south-1"
+           project_id: ${{ env.PROJECT_ID }}
+           cluster_id: ${{ env.CLUSTER_ID }}
 
       - name: get CCE Cluster info
       - run: |
