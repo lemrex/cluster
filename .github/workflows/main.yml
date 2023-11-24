@@ -27,32 +27,4 @@ jobs:
         run: |
           docker build -t swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:${{ github.sha }} .
           docker push swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:${{ github.sha }}
-  deploy:
-    runs-on: ubuntu-latest
-    needs:   build
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        
-      - name: get CCE Cluster Credentials
-        uses: huaweicloud/cce-credential-action@v1.0.0
-        with:
-          ak: ${{ secrets.ACCESSKEY }}
-          sk: ${{ secrets.SECRETACCESSKEY }}
-          region: af-south-1
-          project_id: ${{ env.PROJECT_ID }}
-          cluster_id: ${{ env.CLUSTER_ID }}
-          
-      - name: get CCE Cluster info
-      - run: |
-          kubectl version --client --short
-          kubectl config view
-          kubectl cluster-info
-          kubectl get nodes
-          kubectl get pod,svc --all-namespaces
-          
-      - name: Update deployment
-        run: |
-          sed -i
-          "s@swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:[a-z0-9]*@swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:${{github.sha }}@g" deployment.yaml    
+ 
