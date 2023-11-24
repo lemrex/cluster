@@ -44,13 +44,11 @@ jobs:
           project_id: "3e7cb44b-4b49-43b5-93df-d78f8a24e2dc"
           cluster_id: "974f91d7-8457-11ee-b946-0255ac100753"
           
-      - name: get CCE Cluster info
+      - name: Debugging
         run: |
           kubectl version
           kubectl cluster-info
           kubectl get nodes
-          kubectl get pod
-          kubectl get services 
           
       - name: Update deployment
         run: |
