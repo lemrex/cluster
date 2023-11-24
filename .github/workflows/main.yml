@@ -1,4 +1,3 @@
----
 name: CI/CD to Huawei SWR and CCE
 on:
   push:
