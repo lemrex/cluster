@@ -46,8 +46,6 @@ jobs:
           
       - name: get CCE Cluster info
         run: |
-          kubectl version --client --short
-          kubectl config view
           kubectl cluster-info
           kubectl get nodes
           kubectl get pod,svc --all-namespaces
