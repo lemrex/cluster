@@ -37,11 +37,6 @@ jobs:
         
       - name: get CCE Cluster Credentials
         uses: huaweicloud/cce-credential-action@v1.0.0
-        with:
-          ak: ${{ secrets.ACCESSKEY }}
-          sk: ${{ secrets.SECRETACCESSKEY }}
-          region: af-south-1
-        
           
       - name: get CCE Cluster info
       - run: |
