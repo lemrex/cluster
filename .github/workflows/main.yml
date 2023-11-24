@@ -48,7 +48,8 @@ jobs:
         run: |
           kubectl cluster-info
           kubectl get nodes
-          kubectl get pod,svc --all-namespaces
+          kubectl get pod
+          kubectl get services 
           
       - name: Update deployment
         run: |
