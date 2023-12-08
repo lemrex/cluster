@@ -3,11 +3,11 @@ kind: Service
 metadata:
   name: hww
   labels:
-    app: hello-world
+    app: hw
 spec:
   type: NodePort
   selector:
-    app: hello-world
+    app: hw
   ports:
     - name: http
       port: 3000
