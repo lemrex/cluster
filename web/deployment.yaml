@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-w
+  labels:
+    app: hw
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hw
+  template:
+    metadata:
+      labels:
+        app: hw
+    spec:
+      containers:
+        - name: hello-w
+          image: swr.af-south-1.myhuaweicloud.com/ralf/hello-world-nodejs:991eb61244c7b8e5db74f760676094d1fea000b2
+          ports:
+            - containerPort: 3000
