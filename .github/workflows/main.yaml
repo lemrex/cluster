@@ -13,10 +13,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install kubectl
+      - name: Download kubectl
         run: |
-          sudo cp kubectl /usr/local/bin
-          sudo chmod 755 /usr/local/bin/kubectl
+          curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+          chmod +x kubectl
+
+      - name: Move kubectl to /usr/local/bin
+        run: |
+          sudo mv kubectl /usr/local/bin/
 
       - name: Get CCE Cluster Credentials
         uses: huaweicloud/cce-credential-action@v1.0.0
