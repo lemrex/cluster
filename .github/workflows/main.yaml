@@ -11,7 +11,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v2
+      - run: |
+          sudo cp kubectl /usr/local/bin
+          sudo chmod 755 /usr/local/bin/kubectl        
+
+        
 
       - name: Get CCE Cluster Credentials
         uses: huaweicloud/cce-credential-action@v1.0.0
