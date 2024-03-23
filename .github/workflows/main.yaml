@@ -28,4 +28,4 @@ jobs:
 
       - name: Get CCE Cluster Info
         run: |
-          kubectl cluster-info
+          kubectl version
