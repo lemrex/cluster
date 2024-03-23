@@ -24,7 +24,7 @@ jobs:
         uses: huaweicloud/huaweicloud-cli-action@v1.0.0
 
       - name: Show Specific Version Info of ECS by KooCLI
-        run: 'hcloud CCE CreateKubernetesClusterCert --cli-region="af-south-1" --Content-Type="application/json" --cluster_id="36aae077-e83f-11ee-b54e-0255ac100750" --duration=100'      
+        run: 'hcloud CCE CreateKubernetesClusterCert --cli-region="af-south-1" --Content-Type="application/json" --cluster_id="36" --duration=100'      
 
       - name: Get CCE Cluster Info
         run: |
