@@ -3,7 +3,7 @@ name: CI/CD to Huawei SWR and CCE
 on:
   push:
     branches:
-      - master  # Trigger CI/CD when code is pushed to the 'master' branch
+      - master  # Trigger CI/CD when code is pushed to the 'master' branches
 
 jobs:
   deploy:
@@ -13,19 +13,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Authenticate to Huawei Cloud
-        uses: huaweicloud/auth-action@v1.0.0
-        with: 
-          access_key_id: ${{ secrets.ACCESSKEY }} 
-          secret_access_key: ${{ secrets.SECRETACCESSKEY }}
-          region: 'af-south-1'
-
-      - name: Set up KooCLI
-        uses: huaweicloud/huaweicloud-cli-action@v1.0.0
-
-      - name: Show Specific Version Info of ECS by KooCLI
-        run: 'hcloud CCE CreateKubernetesClusterCert --cli-region="af-south-1" --Content-Type="application/json" --cluster_id="36" --duration=100'      
+      - name: Get CCE Cluster Credentials
+        uses: huaweicloud/cce-credential-action@v1.0.1
+        with:
+          ak: ${{ secrets.ACCESSKEY }}
+          sk: ${{ secrets.SECRETACCESSKEY }}
+          region: "af-south-1"
+          project_id: "eecc7ec81ad346adbcde0a07fa343cb0"
+          cluster_id: "36aae077-e83f-11ee-b54e-0255ac100750"
 
       - name: Get CCE Cluster Info
         run: |
-          kubectl version
+          kubectl version --client
+          kubectl cluster-info
+          kubectl get pod,svc --all-namespaces
