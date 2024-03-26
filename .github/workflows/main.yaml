@@ -8,8 +8,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    needs: build
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -23,8 +21,7 @@ jobs:
       
 
       - name: Debugging
-        run: |
-         
+        run: | 
           kubectl cluster-info
           kubectl get nodes
 
